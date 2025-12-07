@@ -1,19 +1,24 @@
-const { Passport } = require('passport');
 const db = require('../db/queries');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
 async function memberPostGet(req, res) {
-    const posts = await db.getPostInfo();
+    try {
+        const posts = await db.getPostInfo();
     
-    if(!req.isAuthenticated()) {
-        // return res.redirect("/log-in");
-        return res.render("member_post", { posts: posts, isAuthenticated: false, userInfo: null});
-    }
+        if(!req.isAuthenticated()) {
+            // return res.redirect("/log-in");
+            return res.render("member_post", { posts: posts, isAuthenticated: false, userInfo: null});
+        }
 
-    const userInfo = await db.getUserInfo(req.user.id);
-    console.log(`isAdmin: ${userInfo.admin}`);
-    return res.render("member_post", { posts: posts, user: req.user, isAuthenticated: true, userInfo: userInfo });
+        const userInfo = await db.getUserInfo(req.user.id);
+        console.log(`isAdmin: ${userInfo.admin}`);
+        return res.render("member_post", { posts: posts, user: req.user, isAuthenticated: true, userInfo: userInfo });
+    }
+    catch(error) {
+        console.error(error);
+        res.redirect("/");
+    }
 }
 
 async function signUpFormGet(req, res) {
@@ -37,10 +42,12 @@ async function logInFormGet(req, res) {
 }
 
 function logInFormPost(req, res, next) {
+
     passport.authenticate("local", {
         successRedirect: "/",
         failureRedirect: "/log-in"
     })(req, res, next);
+    
 };
 
 async function logOutGet(req, res, next) {
