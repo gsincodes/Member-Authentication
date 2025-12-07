@@ -2,7 +2,7 @@ const db = require('../db/queries');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
-async function memberPostGet(req, res) {
+async function memberPostGet(req, res,) {
     try {
         const posts = await db.getPostInfo();
     
@@ -13,6 +13,14 @@ async function memberPostGet(req, res) {
 
         const userInfo = await db.getUserInfo(req.user.id);
         console.log(`isAdmin: ${userInfo.admin}`);
+        console.log('=== REQUEST DEBUG ===');
+        console.log('Method:', req.method);
+        console.log('Path:', req.path);
+        console.log('Session ID:', req.sessionID);
+        console.log('Authenticated:', req.isAuthenticated());
+        console.log('User:', req.user);
+        console.log('Cookies:', req.headers.cookie);
+        console.log('====================');
         return res.render("member_post", { posts: posts, user: req.user, isAuthenticated: true, userInfo: userInfo });
     }
     catch(error) {

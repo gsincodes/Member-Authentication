@@ -9,6 +9,8 @@ const passport = require('./config/passport');
 
 // app.use(helmet());
 
+app.set('trust proxy', 1);
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -25,6 +27,7 @@ app.use(session({
         maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
