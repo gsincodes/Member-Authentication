@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Posts</title>
+</head>
+<body>
+    <% if(isAuthenticated) { %>
+        <h1>Welcome <%= user.username %></h1>
+    <% } %>
+    <ul>
+        <% if(posts && posts.length > 0) { %>
+            <% posts.forEach(post => { %>
+                <li>Title: <%= post.post_title %></li>
+                <li>Content: <%= post.content %></li>
+                <% if(isAuthenticated) { %>
+                    <li>Author: <%= post.author %></li>
+                    <li><%= post.created_at %></li>
+                    <% if(userInfo && userInfo.admin){%>
+                        <li><form action="/delete-post" method="post">
+                            <input type="hidden" name="postId" value="<%= post.post_id %>">
+                            <button type="submit" onclick="return confirm('Delete this post?')">Delete</button>
+                        </form></li>
+                    <% } %>
+                <% } %>
+                <br>
+            <% }) %>
+        <% } else { %>
+            <p>no posts found</p>
+            <% } %>
+    </ul>
+    <a href="/create-post">Create a Post</a>
+    <% if(!isAuthenticated) { %>
+        <a href="/log-in">Log in</a>
+    <% } %>
+</body>
+</html>
