@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create a Post</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
-    <h1>Create a Post</h1>
-    <form action="/create-post" method="post">
-        <label for="postTitle">Title: </label>
-        <input type="text" name="postTitle" id="postTitle">
-        <label for="postText">What's on your mind?</label>
-        <input type="text" name="postText" id="postText">
-        <button type="submit">Submit</button>
-    </form>
+    <%- include('header.ejs') %>
+    <div id="form-page">
+        <div id="content">
+            <h1>Create a Post</h1>
+            <form action="/create-post" method="post" id="create-post-form">
+                <div class="form-row">
+                    <label for="postTitle">Title: </label>
+                    <input type="text" name="postTitle" id="postTitle">
+                </div>
+                <div class="form-row">
+                    <label for="postText">What's on your mind?</label>
+                    <input type="text" name="postText" id="postText">
+                </div>
+                <button type="submit">Submit</button>
+                <div><a href="/">Go back</a></div>
+            </form>
+        </div>
+    </div>
+    <%- include('footer.ejs') %>
 </body>
 </html>

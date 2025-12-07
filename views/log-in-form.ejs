@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in Form</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
-    <h1>please log in</h1>
-    <form action="/log-in" method="POST">
-        <label for="username">Username</label>
-        <input id="username" name="username" placeholder="username" type="text" />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <button type="submit">Log In</button>
-    </form>
-    <a href="/sign-up">Sign Up</a>
+    <div id="form-page">
+        <%- include('header.ejs') %>
+        <div id="content">
+            <h1>Please Log In</h1>
+            <form action="/log-in" method="POST" id="log-in-form">
+                <div class="form-row">
+                    <label for="username">Username: </label>
+                    <input type="text" name="username" id="username">
+                </div>
+                <div class="form-row">
+                    <label for="password">Password: </label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <button type="submit">Log In</button>
+                <div> <span>Not a member? </span><a href="/sign-up">Sign Up</a></div>
+            </form>
+        </div>
+        <%- include('footer.ejs') %>
+    </div>
 </body>
 </html>

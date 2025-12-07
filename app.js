@@ -5,9 +5,9 @@ const session = require('express-session');
 const app = express();
 const member_router = require('./routes/member_router');
 const passport = require('./config/passport');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 
-app.use(helmet());
+// app.use(helmet());
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

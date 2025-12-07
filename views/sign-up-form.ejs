@@ -4,19 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up Form</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
-    <h1>Sign Up</h1>
-    <form action="/sign-up" method="POST">
-        <label for="firstname">First Name: </label>
-        <input type="text" name="firstname" id="firstname">
-        <label for="lastname">Last Name: </label>
-        <input type="text" name="lastname" id="lastname">
-        <label for="username">Username</label>
-        <input id="username" name="username" placeholder="username" type="text" />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <button type="submit">Sign Up</button>
-    </form>
+    <div id="form-page">
+        <%- include('header.ejs') %>
+        <div id="content">
+            <h1>Create a New Account</h1>
+            <form action="/sign-up" method="POST" id="sign-up-form">
+                <div class="form-row">
+                    <label for="firstname">First Name: </label>
+                    <input type="text" name="firstname" id="firstname">
+                </div>
+                <div class="form-row">
+                    <label for="lastname">Last Name: </label>
+                    <input type="text" name="lastname" id="lastname">
+                </div>
+                <div class="form-row">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" placeholder="username" type="text" />
+                </div>
+                <div class="form-row">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" />
+                </div>
+                <button type="submit">Sign Up</button>
+                <div> <span>Already a member? </span><a href="/log-in">Log In</a></div>
+            </form>
+        </div>
+        <%- include('footer.ejs') %>
+    </div>
 </body>
 </html>
